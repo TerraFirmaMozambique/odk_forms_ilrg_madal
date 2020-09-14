@@ -1,0 +1,223 @@
+<?xml version="1.0"?>
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <h:head>
+    <h:title>Form 1 - Recolha de Informacao Basica</h:title>
+    <model>
+      <itext>
+        <translation default="true()" lang="default">
+          <text id="/form_1_dados_basicos/g1/logo:label">
+            <value form="image">jr://images/tf_logo.jpg</value>
+          </text>
+        </translation>
+      </itext>
+      <instance>
+        <form_1_dados_basicos id="form_1_dados" version="202012051">
+          <start/>
+          <deviceid/>
+          <external_id/>
+          <my_form_name/>
+          <g1>
+            <logo/>
+            <cavateco/>
+          </g1>
+          <intronote/>
+          <tec_name/>
+          <g2>
+            <tec_given_name/>
+            <tec_family_name/>
+          </g2>
+          <date/>
+          <prov_id/>
+          <dist_id/>
+          <post_id/>
+          <village_name/>
+          <g3>
+            <village_families/>
+            <chief_level/>
+            <family_name/>
+            <given_name/>
+            <contact/>
+          </g3>
+          <chief_face/>
+          <chief_id_front/>
+          <chief_id_back/>
+          <point_chief_house/>
+          <point_meeting/>
+          <obs/>
+          <end/>
+          <meta>
+            <instanceID/>
+            <instanceName/>
+          </meta>
+        </form_1_dados_basicos>
+      </instance>
+      <bind jr:preload="timestamp" jr:preloadParams="start" nodeset="/form_1_dados_basicos/start" type="dateTime"/>
+      <bind jr:preload="property" jr:preloadParams="deviceid" nodeset="/form_1_dados_basicos/deviceid" type="string"/>
+      <bind calculate="&quot;fixed&quot;" nodeset="/form_1_dados_basicos/external_id" type="string"/>
+      <bind calculate="&quot;Formulario 1 - Recolha de Informacao basica (Povoados e Lideres)&quot;" nodeset="/form_1_dados_basicos/my_form_name" type="string"/>
+      <bind nodeset="/form_1_dados_basicos/g1/logo" readonly="true()" type="string"/>
+      <bind nodeset="/form_1_dados_basicos/g1/cavateco" readonly="true()" type="string"/>
+      <bind nodeset="/form_1_dados_basicos/intronote" readonly="true()" type="string"/>
+      <bind nodeset="/form_1_dados_basicos/tec_name" required="true()" type="select1"/>
+      <bind nodeset="/form_1_dados_basicos/g2" relevant=" /form_1_dados_basicos/tec_name ='Outro'"/>
+      <bind constraint="regex(., &quot;^[a-zA-Z0-9. _-éáíóãõúçâê]{1,25}$&quot;)" nodeset="/form_1_dados_basicos/g2/tec_given_name" required="true()" type="string"/>
+      <bind constraint="regex(., &quot;^[a-zA-Z0-9. _-éáíóãõúçâê]{1,25}$&quot;)" nodeset="/form_1_dados_basicos/g2/tec_family_name" required="true()" type="string"/>
+      <bind nodeset="/form_1_dados_basicos/date" required="true()" type="date"/>
+      <bind nodeset="/form_1_dados_basicos/prov_id" required="true()" type="select1"/>
+      <bind nodeset="/form_1_dados_basicos/dist_id" required="true()" type="string"/>
+      <bind nodeset="/form_1_dados_basicos/post_id" required="true()" type="string"/>
+      <bind constraint="regex(., &quot;^[a-zA-Z0-9. _-éáíóãõúçâê]{1,55}$&quot;)" jr:constraintMsg="Invalida - a resposta não pode incluir um novo paragrafo. Faça a favor de eliminar qualquer linha adicional." nodeset="/form_1_dados_basicos/village_name" required="true()" type="string"/>
+      <bind nodeset="/form_1_dados_basicos/g3/village_families" required="true()" type="int"/>
+      <bind constraint="regex(., &quot;^[a-zA-Z0-9. _-éáíóãõúçâê]{1,55}$&quot;)" jr:constraintMsg="Invalida - as respostas nesta pagina não podem incluir um novo paragrafo. Faça a favor de eliminar qualquer linha adicional." nodeset="/form_1_dados_basicos/g3/chief_level" required="true()" type="string"/>
+      <bind constraint="regex(., &quot;^[a-zA-Z0-9. _-éáíóãõúçâê]{1,55}$&quot;)" jr:constraintMsg="Invalida - as respostas nesta pagina não podem incluir um novo paragrafo. Faça a favor de eliminar qualquer linha adicional." nodeset="/form_1_dados_basicos/g3/family_name" required="true()" type="string"/>
+      <bind constraint="regex(., &quot;^[a-zA-Z0-9. _-éáíóãõúçâê]{1,55}$&quot;)" jr:constraintMsg="Invalida - as respostas nesta pagina não podem incluir um novo paragrafo. Faça a favor de eliminar qualquer linha adicional." nodeset="/form_1_dados_basicos/g3/given_name" required="true()" type="string"/>
+      <bind constraint="regex(.,'[0-9]{9}')" jr:constraintMsg="O numero não está no formato correcto. Faça a favor de conferir" nodeset="/form_1_dados_basicos/g3/contact" type="string"/>
+      <bind nodeset="/form_1_dados_basicos/chief_face" required="true()" type="binary"/>
+      <bind nodeset="/form_1_dados_basicos/chief_id_front" type="binary"/>
+      <bind nodeset="/form_1_dados_basicos/chief_id_back" type="binary"/>
+      <bind nodeset="/form_1_dados_basicos/point_chief_house" required="true()" type="geopoint"/>
+      <bind nodeset="/form_1_dados_basicos/point_meeting" required="true()" type="geopoint"/>
+      <bind constraint="regex(., &quot;^[a-zA-Z0-9.;? _-éáíóãõúçâê]{1,255}$&quot;)" jr:constraintMsg="Invalida - as respostas nesta pagina não podiam incluir um novo paragrafo. Faça a favor de eliminar qualquer linha adicional." nodeset="/form_1_dados_basicos/obs" type="string"/>
+      <bind jr:preload="timestamp" jr:preloadParams="end" nodeset="/form_1_dados_basicos/end" type="dateTime"/>
+      <bind calculate="concat('uuid:', uuid())" nodeset="/form_1_dados_basicos/meta/instanceID" readonly="true()" type="string"/>
+      <bind calculate="concat('Village','_', /form_1_dados_basicos/village_name )" nodeset="/form_1_dados_basicos/meta/instanceName" type="string"/>
+    </model>
+  </h:head>
+  <h:body>
+    <group appearance="field-list" ref="/form_1_dados_basicos/g1">
+      <input ref="/form_1_dados_basicos/g1/logo">
+        <label ref="jr:itext('/form_1_dados_basicos/g1/logo:label')"/>
+      </input>
+      <input ref="/form_1_dados_basicos/g1/cavateco">
+        <label>&lt;br/&gt; &lt;h1&gt;Cadeia de Valor de Terra Comunitária&lt;/h1&gt;&lt;br/&gt; &lt;h2&gt;Uma iniciativa do Cadastro Popular&lt;/h2&gt;&lt;span style=&quot;color:#57b055&quot;&gt;<output value=" /form_1_dados_basicos/my_form_name "/>&lt;/span&gt; &lt;br/&gt;</label>
+      </input>
+    </group>
+    <input ref="/form_1_dados_basicos/intronote">
+      <label>&lt;br/&gt; &lt;span style=&quot;color:#57b055&quot;&gt;<output value=" /form_1_dados_basicos/my_form_name "/>&lt;/span&gt; &lt;br/&gt; &lt;br/&gt;
+
+Este formulário é utilizado para capturar informação inicial sobre os povoados ou aglomerações de população que estão localizados dentro duma área alvo dum programa de delimitação.
+
+O técnico pode usar o formulário para gravar informação sobre cada povoado visitado, incluindo as coordenadas geográficas, as detalhes do povoado, nomes e contactos dos lideres e outras informações.
+
+A captura do nome do povoado ou aglomeração deve ser feito numa maneira que ajuda identifica-lo facilmente no futuro. Quer dizer que o nome &quot;Zona 3&quot; não fica aceitável, mas sim &quot;Zona 3 de Namarua&quot;, por exemplo.
+
+Por favor deslizar para a frente para continuar.</label>
+    </input>
+    <select1 appearance="minimal" ref="/form_1_dados_basicos/tec_name">
+      <label>Introduza o seu nome&lt;br&gt;Nome do(a) técnico(a):</label>
+      <item>
+        <label>Arlindo Macuva</label>
+        <value>Arlindo_Macuva</value>
+      </item>
+      <item>
+        <label>Outro</label>
+        <value>Outro</value>
+      </item>
+    </select1>
+    <group appearance="field-list" ref="/form_1_dados_basicos/g2">
+      <label>Novo nome do(a) técnico(a):</label>
+      <input ref="/form_1_dados_basicos/g2/tec_given_name">
+        <label>Escreve o seu nome se não apareceu na lista</label>
+      </input>
+      <input ref="/form_1_dados_basicos/g2/tec_family_name">
+        <label>Escreve o seu apelido se não apareceu na lista</label>
+      </input>
+    </group>
+    <input appearance="no-calendar" ref="/form_1_dados_basicos/date">
+      <label>Data do encontro:</label>
+    </input>
+    <select1 appearance="minimal" ref="/form_1_dados_basicos/prov_id">
+      <label>Selecionar a província</label>
+      <item>
+        <label>Cabo Delgado</label>
+        <value>P02</value>
+      </item>
+      <item>
+        <label>Gaza</label>
+        <value>P09</value>
+      </item>
+      <item>
+        <label>Inhambane</label>
+        <value>P08</value>
+      </item>
+      <item>
+        <label>Manica</label>
+        <value>P06</value>
+      </item>
+      <item>
+        <label>Maputo</label>
+        <value>P10</value>
+      </item>
+      <item>
+        <label>Nampula</label>
+        <value>P03</value>
+      </item>
+      <item>
+        <label>Niassa</label>
+        <value>P01</value>
+      </item>
+      <item>
+        <label>Sofala</label>
+        <value>P07</value>
+      </item>
+      <item>
+        <label>Tete</label>
+        <value>P05</value>
+      </item>
+      <item>
+        <label>Zambezia</label>
+        <value>P04</value>
+      </item>
+    </select1>
+    <input appearance="minimal" query="instance('districts')/root/item[prov_id= /form_1_dados_basicos/prov_id ]" ref="/form_1_dados_basicos/dist_id">
+      <label>Selecionar o distrito</label>
+    </input>
+    <input appearance="minimal" query="instance('posts')/root/item[dist_id= /form_1_dados_basicos/dist_id ]" ref="/form_1_dados_basicos/post_id">
+      <label>Selecionar o posto administrativo</label>
+    </input>
+    <input appearance="minimal" ref="/form_1_dados_basicos/village_name">
+      <label>Escreve o nome do povoado</label>
+      <hint>Este é o nome que será usado em todas os formulários subsequentes para registrar actividades neste povoado. Por favor, verifique se todos concordam com o nome e se está escrito correctamente</hint>
+    </input>
+    <group ref="/form_1_dados_basicos/g3">
+      <label>Detalhes Povoado</label>
+      <input appearance="numbers" ref="/form_1_dados_basicos/g3/village_families">
+        <label>Quantas famílias fazem parte deste povoado?</label>
+      </input>
+      <input ref="/form_1_dados_basicos/g3/chief_level">
+        <label>Qual é o nível ou titulo do chefe deste povoado?</label>
+        <hint>Pode ser, por exemplo, 'Cabo de Terra', 'Sapanda', 'Rainha', 'Pyamwene', etc.)</hint>
+      </input>
+      <input ref="/form_1_dados_basicos/g3/family_name">
+        <label>Qual é o apelido do chefe deste povoado?</label>
+      </input>
+      <input ref="/form_1_dados_basicos/g3/given_name">
+        <label>Qual é o nome do chefe deste povoado?</label>
+      </input>
+      <input appearance="numbers" ref="/form_1_dados_basicos/g3/contact">
+        <label>Qual é o contacto do chefe deste povoado?</label>
+      </input>
+    </group>
+    <upload mediatype="image/*" ref="/form_1_dados_basicos/chief_face">
+      <label>Tire uma fotografia do chefe</label>
+      <hint>Lembrete: A fotografia deve ser do rosto da pessoa e ser claramente visível. Não tire uma fotografia na sombra e certifique-se que a pessoa está bem iluminada.</hint>
+    </upload>
+    <upload mediatype="image/*" ref="/form_1_dados_basicos/chief_id_front">
+      <label>Tire uma fotografia do documento de identificação (frente)</label>
+    </upload>
+    <upload mediatype="image/*" ref="/form_1_dados_basicos/chief_id_back">
+      <label>Tire uma fotografia do documento de identificação (verso)</label>
+    </upload>
+    <input ref="/form_1_dados_basicos/point_chief_house">
+      <label>Coordenadas GPS da casa do chefe</label>
+      <hint>Lembrete: se a 'gravar localização' está levando algum tempo, por favor, verifique se a luz azul do seu Glo está ligada</hint>
+    </input>
+    <input ref="/form_1_dados_basicos/point_meeting">
+      <label>Coordenadas GPS do local de encontros</label>
+      <hint>Lembrete: se a 'gravar localização' está levando algum tempo, por favor, verifique se a luz azul do seu Glo está ligada</hint>
+    </input>
+    <input ref="/form_1_dados_basicos/obs">
+      <label>Observações sobre o encontro:</label>
+    </input>
+  </h:body>
+</h:html>

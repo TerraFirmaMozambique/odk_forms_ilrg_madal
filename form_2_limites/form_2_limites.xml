@@ -1,0 +1,173 @@
+<?xml version="1.0"?>
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <h:head>
+    <h:title>form_2_limites - Limites dos Povoados</h:title>
+    <model>
+      <itext>
+        <translation default="true()" lang="default">
+          <text id="/form_2_limites/Cg1/logo:label">
+            <value form="image">jr://images/tf_logo.jpg</value>
+          </text>
+        </translation>
+      </itext>
+      <instance>
+        <form_2_limites id="form_2_limites" version="202012051">
+          <start/>
+          <deviceid/>
+          <my_form_name/>
+          <Cg1>
+            <logo/>
+            <cavateco/>
+          </Cg1>
+          <intronote/>
+          <tec_name/>
+          <Cg2>
+            <tec_given_name/>
+            <tec_family_name/>
+          </Cg2>
+          <date/>
+          <prov_id/>
+          <dist_id/>
+          <post_id/>
+          <village_name/>
+          <point_limit_start/>
+          <points_village jr:template="">
+            <point_limit_repeat/>
+            <cam_geopon/>
+          </points_village>
+          <end/>
+          <meta>
+            <instanceID/>
+            <instanceName/>
+          </meta>
+        </form_2_limites>
+      </instance>
+      <bind jr:preload="timestamp" jr:preloadParams="start" nodeset="/form_2_limites/start" type="dateTime"/>
+      <bind jr:preload="property" jr:preloadParams="deviceid" nodeset="/form_2_limites/deviceid" type="string"/>
+      <bind calculate="&quot;Formulario 2 - Identificação dos limites dos povoados&quot;" nodeset="/form_2_limites/my_form_name" type="string"/>
+      <bind nodeset="/form_2_limites/Cg1/logo" readonly="true()" type="string"/>
+      <bind nodeset="/form_2_limites/Cg1/cavateco" readonly="true()" type="string"/>
+      <bind nodeset="/form_2_limites/intronote" readonly="true()" type="string"/>
+      <bind nodeset="/form_2_limites/tec_name" required="true()" type="select1"/>
+      <bind nodeset="/form_2_limites/Cg2" relevant=" /form_2_limites/tec_name ='Outro'"/>
+      <bind constraint="regex(., &quot;^[a-zA-Z0-9. _-éáíóãõúçâê]{1,25}$&quot;)" nodeset="/form_2_limites/Cg2/tec_given_name" required="true()" type="string"/>
+      <bind constraint="regex(., &quot;^[a-zA-Z0-9. _-éáíóãõúçâê]{1,25}$&quot;)" nodeset="/form_2_limites/Cg2/tec_family_name" required="true()" type="string"/>
+      <bind nodeset="/form_2_limites/date" required="true()" type="date"/>
+      <bind nodeset="/form_2_limites/prov_id" required="true()" type="select1"/>
+      <bind nodeset="/form_2_limites/dist_id" required="true()" type="string"/>
+      <bind nodeset="/form_2_limites/post_id" required="true()" type="string"/>
+      <bind constraint="regex(., &quot;^[a-zA-Z0-9. _-éáíóãõúçâê]{1,25}$&quot;)" jr:constraintMsg="Invalida - a resposta não pode incluir um novo paragrafo. Faça a favor de eliminar qualquer linha adicional." nodeset="/form_2_limites/village_name" required="true()" type="string"/>
+      <bind nodeset="/form_2_limites/point_limit_start" required="true()" type="geopoint"/>
+      <bind nodeset="/form_2_limites/points_village/point_limit_repeat" required="true()" type="geopoint"/>
+      <bind calculate="concat(  /form_2_limites/tec_name ,'_', /form_2_limites/date )" nodeset="/form_2_limites/points_village/cam_geopon" type="string"/>
+      <bind jr:preload="timestamp" jr:preloadParams="end" nodeset="/form_2_limites/end" type="dateTime"/>
+      <bind calculate="concat('uuid:', uuid())" nodeset="/form_2_limites/meta/instanceID" readonly="true()" type="string"/>
+      <bind calculate="concat('Village_limits','_', /form_2_limites/village_name )" nodeset="/form_2_limites/meta/instanceName" type="string"/>
+    </model>
+  </h:head>
+  <h:body>
+    <group appearance="field-list" ref="/form_2_limites/Cg1">
+      <input ref="/form_2_limites/Cg1/logo">
+        <label ref="jr:itext('/form_2_limites/Cg1/logo:label')"/>
+      </input>
+      <input ref="/form_2_limites/Cg1/cavateco">
+        <label>&lt;br/&gt; &lt;h1&gt;Projecto Madal&lt;/h1&gt;&lt;br/&gt;&lt;span style=&quot;color:#57b055&quot;&gt;<output value=" /form_2_limites/my_form_name "/>&lt;/span&gt; &lt;br/&gt;</label>
+      </input>
+    </group>
+    <input ref="/form_2_limites/intronote">
+      <label>&lt;br/&gt; &lt;span style=&quot;color:#57b055&quot;&gt;<output value=" /form_2_limites/my_form_name "/>&lt;/span&gt; &lt;br/&gt; &lt;br/&gt;Este formulário é utilizado para identificar limites dos povoados para que se tenha uma ideia sobre a sua localização. 
+
+Pelo menos cinco pontos deverão ser levantados.
+
+Por favor deslizar para a frente para continuar.</label>
+    </input>
+    <select1 ref="/form_2_limites/tec_name">
+      <label>Introduza o seu nome&lt;br&gt;Nome do(a) técnico(a):</label>
+      <item>
+        <label>Arlindo Macuva</label>
+        <value>Arlindo_Macuva</value>
+      </item>
+      <item>
+        <label>Outro</label>
+        <value>Outro</value>
+      </item>
+    </select1>
+    <group appearance="field-list" ref="/form_2_limites/Cg2">
+      <label>Novo nome do(a) técnico(a):</label>
+      <input ref="/form_2_limites/Cg2/tec_given_name">
+        <label>Escreve o seu nome se não apareceu na lista</label>
+      </input>
+      <input ref="/form_2_limites/Cg2/tec_family_name">
+        <label>Escreve o seu apelido se não apareceu na lista</label>
+      </input>
+    </group>
+    <input appearance="no-calendar" ref="/form_2_limites/date">
+      <label>Data da caminhada:</label>
+    </input>
+    <select1 appearance="minimal" ref="/form_2_limites/prov_id">
+      <label>Selecionar a província</label>
+      <item>
+        <label>Cabo Delgado</label>
+        <value>P02</value>
+      </item>
+      <item>
+        <label>Gaza</label>
+        <value>P09</value>
+      </item>
+      <item>
+        <label>Inhambane</label>
+        <value>P08</value>
+      </item>
+      <item>
+        <label>Manica</label>
+        <value>P06</value>
+      </item>
+      <item>
+        <label>Maputo</label>
+        <value>P10</value>
+      </item>
+      <item>
+        <label>Nampula</label>
+        <value>P03</value>
+      </item>
+      <item>
+        <label>Niassa</label>
+        <value>P01</value>
+      </item>
+      <item>
+        <label>Sofala</label>
+        <value>P07</value>
+      </item>
+      <item>
+        <label>Tete</label>
+        <value>P05</value>
+      </item>
+      <item>
+        <label>Zambezia</label>
+        <value>P04</value>
+      </item>
+    </select1>
+    <input appearance="minimal" query="instance('districts')/root/item[prov_id= /form_2_limites/prov_id ]" ref="/form_2_limites/dist_id">
+      <label>Selecionar o distrito</label>
+    </input>
+    <input appearance="minimal" query="instance('posts')/root/item[dist_id= /form_2_limites/dist_id ]" ref="/form_2_limites/post_id">
+      <label>Selecionar o posto administrativo</label>
+    </input>
+    <input appearance="minimal" ref="/form_2_limites/village_name">
+      <label>Escreva o nome do povoado</label>
+    </input>
+    <input ref="/form_2_limites/point_limit_start">
+      <label>Capture das coordenadas GPS do ponto de partida da caminhada</label>
+      <hint>Lembrete: se a 'gravar localização' está levando algum tempo, por favor, verifique se a luz azul do seu Glo está ligada</hint>
+    </input>
+    <group ref="/form_2_limites/points_village">
+      <label>Pontos na caminhada</label>
+      <repeat nodeset="/form_2_limites/points_village">
+        <input ref="/form_2_limites/points_village/point_limit_repeat">
+          <label>Capture as coordenadas GPS do ponto de limite entre os povoados</label>
+          <hint>Lembrete: se a 'gravar localização' está levando algum tempo, por favor, verifique se a luz azul do seu Glo está ligada</hint>
+        </input>
+      </repeat>
+    </group>
+  </h:body>
+</h:html>
